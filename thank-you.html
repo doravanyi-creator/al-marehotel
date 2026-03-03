@@ -11,25 +11,40 @@
         }
     </script>
     <style>
-        #custom-cursor { width: 24px; height: 24px; border: 1.5px solid #c27c65; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate3d(0, 0, 0); transition: width 0.3s, height 0.3s; }
+        /* The Fixed Cursor Styles */
+        #custom-cursor { 
+            width: 24px; 
+            height: 24px; 
+            border: 1.5px solid #c27c65; 
+            background-color: rgba(194, 124, 101, 0.1); 
+            border-radius: 50%; 
+            position: fixed; 
+            pointer-events: none; 
+            z-index: 99999; 
+            transform: translate3d(0, 0, 0); 
+            will-change: transform; 
+            transition: width 0.3s, height 0.3s; 
+        }
         @media (min-width: 1024px) { body, a, button { cursor: none !important; } }
+        @media (max-width: 1023px) { #custom-cursor { display: none; } }
     </style>
 </head>
-<body class="bg-brandBeige text-brandDark antialiased flex items-center justify-center min-h-screen">
+<body class="bg-[#f4f1ea] text-[#2d2a26] antialiased flex items-center justify-center min-h-screen">
+    
     <div id="custom-cursor"></div>
 
     <div class="max-w-xl px-6 text-center">
-        <span class="text-accent uppercase tracking-[0.3em] text-[10px] mb-6 block">Inquiry Received</span>
+        <span class="text-[#c27c65] uppercase tracking-[0.3em] text-[10px] mb-6 block font-bold">Inquiry Received</span>
         <h1 class="font-serif text-5xl md:text-6xl mb-6">Your retreat begins soon.</h1>
         <p class="text-stone-500 font-serif italic text-xl mb-12 leading-relaxed">
             Our concierge has received your request. We will reach out within 24 hours to finalize the details of your stay.
         </p>
         
-        <div class="space-y-4">
-            <a href="index.html" class="block w-full bg-brandDark text-white py-4 uppercase text-xs tracking-widest font-bold hover:bg-zinc-800 transition-all">
+        <div class="space-y-4 max-w-xs mx-auto">
+            <a href="index.html" class="block w-full bg-[#2d2a26] text-white py-4 uppercase text-[10px] tracking-widest font-bold hover:bg-zinc-800 transition-all shadow-md">
                 Return to Homepage
             </a>
-            <a href="https://instagram.com/your-profile" target="_blank" class="block w-full border border-brandDark text-brandDark py-4 uppercase text-xs tracking-widest font-bold hover:bg-brandDark hover:text-white transition-all">
+            <a href="#" class="block w-full border border-[#2d2a26] text-[#2d2a26] py-4 uppercase text-[10px] tracking-widest font-bold hover:bg-[#2d2a26] hover:text-white transition-all">
                 Follow our Journey
             </a>
         </div>
@@ -38,13 +53,34 @@
     <script>
         const cursor = document.getElementById('custom-cursor');
         let mX = 0, mY = 0, cX = 0, cY = 0;
-        document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+        
+        document.addEventListener('mousemove', e => { 
+            mX = e.clientX; 
+            mY = e.clientY; 
+        });
+
         function updateCursor() {
-            cX += (mX - cX) * 0.12; cY += (mY - cY) * 0.12;
+            cX += (mX - cX) * 0.12; 
+            cY += (mY - cY) * 0.12;
             cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
             requestAnimationFrame(updateCursor);
         }
         updateCursor();
+
+        // Cursor scale effect for links
+        const links = document.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.backgroundColor = 'rgba(194, 124, 101, 0.2)';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.width = '24px';
+                cursor.style.height = '24px';
+                cursor.style.backgroundColor = 'rgba(194, 124, 101, 0.1)';
+            });
+        });
     </script>
 </body>
 </html>
