@@ -4,18 +4,14 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Experiences | AL-MARÉ Boutique Hotel</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script>
         tailwind.config = {
           theme: {
             extend: {
-              colors: {
-                primary: '#8ba88e', accent: '#c27c65', brandDark: '#2d2a26',
-                brandBeige: '#f4f1ea', brandWhite: '#fafafa',
-              },
+              colors: { primary: '#8ba88e', accent: '#c27c65', brandDark: '#2d2a26', brandBeige: '#f4f1ea', brandWhite: '#fafafa' },
               fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Cormorant Garamond', 'serif'] },
               borderRadius: { 'custom': '4px' }
             }
@@ -23,98 +19,102 @@
         }
     </script>
     <style>
-        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
-        .glass-modal { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; letter-spacing: -0.01em; }
+        #custom-cursor { width: 24px; height: 24px; border: 1.5px solid #c27c65; background-color: rgba(194, 124, 101, 0.1); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transform: translate3d(0, 0, 0); will-change: transform; transition: width 0.3s, height 0.3s; }
+        @media (min-width: 1024px) { body, a, button { cursor: none !important; } }
+        @media (max-width: 1023px) { #custom-cursor { display: none; } }
+        .glass-modal { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
     </style>
 </head>
 <body class="bg-brandWhite text-brandDark antialiased">
 
+<div id="custom-cursor"></div>
+
 <nav class="fixed w-full z-50 backdrop-blur-md border-b border-stone-100 bg-brandWhite/90">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="index.html" class="text-2xl font-serif font-bold tracking-widest">AL-MARÉ</a>
+        <a href="index.html" class="text-2xl font-serif font-bold tracking-widest z-[70]">AL-MARÉ</a>
         <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
-            <a class="hover:text-primary transition-colors" href="index.html">Philosophy</a>
+            <a class="hover:text-primary transition-colors" href="index.html#philosophy">Philosophy</a>
             <a class="text-primary" href="experiences.html">Experiences</a>
             <a class="hover:text-primary transition-colors" href="rooms.html">Rooms</a>
-            <a class="hover:text-primary transition-colors" href="#">Contact</a>
+            <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
         </div>
-        <button onclick="toggleBooking()" class="bg-brandDark text-white px-6 py-2 rounded-custom text-sm uppercase tracking-widest hover:bg-zinc-800 transition-all">Book Now</button>
+        <div class="flex items-center space-x-4">
+            <button onclick="toggleBooking()" class="bg-brandDark text-white px-5 py-2 rounded-custom text-[10px] md:text-xs uppercase tracking-widest">Book Now</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-brandDark z-[70] p-2">
+                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" /></svg>
+            </button>
+        </div>
+    </div>
+    <div id="mobileMenu" class="fixed inset-0 bg-brandWhite z-[60] flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-500">
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="index.html">Home</a>
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="experiences.html">Experiences</a>
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="rooms.html">Rooms</a>
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="contact.html">Contact</a>
     </div>
 </nav>
 
-<header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
-    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Wellness">
+<header class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 bg-black/30"></div>
-    <div class="relative text-center text-white px-4">
-        <h1 class="text-5xl md:text-7xl mb-4">The Art of Slow Living</h1>
-        <p class="font-serif italic text-xl opacity-90">Immersive journeys designed to reconnect.</p>
+    <div class="relative text-center px-6" data-aos="fade-up">
+        <h1 class="text-white text-6xl md:text-8xl mb-4">The Rituals</h1>
+        <p class="text-white/80 font-serif italic text-xl">Slowing down to the rhythm of the tides.</p>
     </div>
 </header>
 
-<main class="max-w-7xl mx-auto px-6 py-24 space-y-32">
-    <section class="grid md:grid-cols-2 gap-16 items-center">
-        <div>
-            <span class="text-primary font-bold uppercase tracking-widest text-xs mb-4 block">The Rituals</span>
-            <h2 class="text-4xl md:text-5xl mb-6">Spa as the Heart</h2>
-            <p class="text-stone-500 leading-relaxed mb-8 font-light text-lg">From Balearic salt scrubs to sunrise meditation on our limestone cliffs. Our therapists curate treatments based on the lunar cycle and your personal energy, ensuring a restoration that stays with you long after you leave.</p>
-            <button onclick="toggleBooking()" class="border-b border-brandDark pb-1 text-sm uppercase font-bold tracking-widest">Inquire about Rituals</button>
+<main class="py-24 space-y-32">
+    <section class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+        <div data-aos="fade-right">
+            <span class="text-accent text-xs uppercase tracking-widest mb-4 block">Holistic Wellness</span>
+            <h2 class="text-5xl mb-6">Subterranean Stone Spa</h2>
+            <p class="text-stone-500 leading-relaxed mb-8 font-light text-lg">Carved directly into the coastal limestone, our spa offers hydrotherapy circuits, salt-water pools, and treatments using organic Menorcan botanicals.</p>
+            <button class="border-b border-brandDark pb-1 text-sm uppercase tracking-tighter hover:text-accent transition-colors">View Treatment Menu</button>
         </div>
-        <div class="aspect-[4/5] overflow-hidden rounded-custom">
-            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Spa">
+        <div class="relative aspect-square overflow-hidden rounded-custom" data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecee?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
         </div>
     </section>
 
-    <section class="grid md:grid-cols-2 gap-16 items-center">
-        <div class="md:order-2">
-            <span class="text-primary font-bold uppercase tracking-widest text-xs mb-4 block">The Terroir</span>
-            <h2 class="text-4xl md:text-5xl mb-6">Mindful Gastronomy</h2>
-            <p class="text-stone-500 leading-relaxed mb-8 font-light text-lg">Farm-to-table isn’t a trend here; it’s our heritage. Join our chef for a foraging walk followed by a private sunset dinner in the ancient olive groves, featuring organic wines and ingredients from our own garden.</p>
-            <button onclick="toggleBooking()" class="border-b border-brandDark pb-1 text-sm uppercase font-bold tracking-widest">View the Seasonal Menu</button>
+    <section class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center md:flex-row-reverse">
+        <div class="md:order-2" data-aos="fade-left">
+            <span class="text-accent text-xs uppercase tracking-widest mb-4 block">The Shoreline</span>
+            <h2 class="text-5xl mb-6">Private Cove Access</h2>
+            <p class="text-stone-500 leading-relaxed mb-8 font-light text-lg">Guests enjoy exclusive access to a secluded Cala, where turquoise waters meet white sands. Kayaks and paddleboards are available for sunrise explorations.</p>
         </div>
-        <div class="aspect-[4/5] overflow-hidden rounded-custom md:order-1">
-            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover" alt="Dining">
+        <div class="relative aspect-square overflow-hidden rounded-custom md:order-1" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop" class="w-full h-full object-cover">
         </div>
     </section>
 </main>
 
-<footer class="bg-brandBeige py-20 text-center">
-    <div class="text-2xl font-serif font-bold tracking-widest mb-4">AL-MARÉ</div>
-    <p class="text-stone-400 text-xs uppercase tracking-widest">Menorca • Spain</p>
+<footer class="bg-brandDark text-white/50 py-20 text-center text-xs tracking-widest uppercase">
+    © 2024 AL-MARÉ Boutique Hotel
 </footer>
 
-<div id="bookingModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-    <div class="glass-modal w-full max-w-lg p-8 rounded-custom shadow-2xl relative">
-        <button onclick="toggleBooking()" class="absolute top-4 right-4 text-stone-400">✕</button>
-        <div id="bookingFormContent">
-            <h2 class="text-3xl mb-6">Plan Your Experience</h2>
-            <form class="space-y-4" onsubmit="handleBooking(event)">
-                <input type="date" required class="w-full border-stone-200 rounded-custom">
-                <select class="w-full border-stone-200 rounded-custom">
-                    <option>Thermal Circuit Access</option>
-                    <option>Sunset Foraging Dinner</option>
-                    <option>Signature Wellness Retreat</option>
-                </select>
-                <button type="submit" class="w-full bg-accent text-white py-4 rounded-custom uppercase font-bold tracking-widest">Check Availability</button>
-            </form>
-        </div>
-        <div id="successMessage" class="hidden text-center py-10">
-            <h2 class="text-3xl text-primary mb-4">Inquiry Sent</h2>
-            <p class="text-stone-500 mb-6">Our concierge will contact you shortly.</p>
-            <button onclick="toggleBooking()" class="font-bold border-b border-brandDark">Close</button>
-        </div>
-    </div>
-</div>
+<div id="bookingModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-black/60"><div class="glass-modal w-full max-w-lg p-8 rounded-custom shadow-2xl relative"><button onclick="toggleBooking()" class="absolute top-4 right-4 text-stone-400">✕</button><div id="bookingFormContent"><h2 class="text-3xl mb-6 font-serif text-center">Inquire Availability</h2><form onsubmit="handleBooking(event)" class="space-y-4"><input type="date" required class="w-full border-stone-200 rounded-custom"><button type="submit" class="w-full bg-accent text-white py-4 rounded-custom uppercase font-bold tracking-widest">Verify</button></form></div><div id="successMessage" class="hidden text-center py-10"><h2 class="text-3xl text-primary font-serif">Message Sent</h2><button onclick="toggleBooking()" class="mt-4 border-b border-brandDark">Close</button></div></div></div>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    function toggleBooking() {
-        document.getElementById('bookingModal').classList.toggle('hidden');
+    AOS.init({ once: true });
+    const cursor = document.getElementById('custom-cursor');
+    let mX = 0, mY = 0, cX = 0, cY = 0;
+    document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+    function updateCursor() {
+        cX += (mX - cX) * 0.12; cY += (mY - cY) * 0.12;
+        cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(updateCursor);
     }
-    function handleBooking(e) {
-        e.preventDefault();
-        document.getElementById('bookingFormContent').classList.add('hidden');
-        document.getElementById('successMessage').classList.remove('hidden');
+    updateCursor();
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu'); const icon = document.getElementById('menuIcon');
+        const isOpen = !menu.classList.contains('opacity-0');
+        menu.classList.toggle('opacity-0'); menu.classList.toggle('pointer-events-none');
+        icon.innerHTML = isOpen ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" />' : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />';
+        document.body.style.overflow = isOpen ? '' : 'hidden';
     }
+    function toggleBooking() { document.getElementById('bookingModal').classList.toggle('hidden'); }
+    function handleBooking(e) { e.preventDefault(); document.getElementById('bookingFormContent').classList.add('hidden'); document.getElementById('successMessage').classList.remove('hidden'); }
 </script>
-
 </body>
 </html>
