@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Experiences | AL-MARÉ Boutique Hotel</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#8ba88e', accent: '#c27c65', brandDark: '#2d2a26',
+                brandBeige: '#f4f1ea', brandWhite: '#fafafa',
+              },
+              fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Cormorant Garamond', 'serif'] },
+              borderRadius: { 'custom': '4px' }
+            }
+          }
+        }
+    </script>
+    <style>
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
+        .glass-modal { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-brandWhite text-brandDark antialiased">
+
+<nav class="fixed w-full z-50 backdrop-blur-md border-b border-stone-100 bg-brandWhite/90">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="index.html" class="text-2xl font-serif font-bold tracking-widest">AL-MARÉ</a>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
+            <a class="hover:text-primary transition-colors" href="index.html">Philosophy</a>
+            <a class="text-primary" href="experiences.html">Experiences</a>
+            <a class="hover:text-primary transition-colors" href="rooms.html">Rooms</a>
+            <a class="hover:text-primary transition-colors" href="#">Contact</a>
+        </div>
+        <button onclick="toggleBooking()" class="bg-brandDark text-white px-6 py-2 rounded-custom text-sm uppercase tracking-widest hover:bg-zinc-800 transition-all">Book Now</button>
+    </div>
+</nav>
+
+<header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Wellness">
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="relative text-center text-white px-4">
+        <h1 class="text-5xl md:text-7xl mb-4">The Art of Slow Living</h1>
+        <p class="font-serif italic text-xl opacity-90">Immersive journeys designed to reconnect.</p>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-24 space-y-32">
+    <section class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+            <span class="text-primary font-bold uppercase tracking-widest text-xs mb-4 block">The Rituals</span>
+            <h2 class="text-4xl md:text-5xl mb-6">Spa as the Heart</h2>
+            <p class="text-stone-500 leading-relaxed mb-8 font-light text-lg">From Balearic salt scrubs to sunrise meditation on our limestone cliffs. Our therapists curate treatments based on the lunar cycle and your personal energy, ensuring a restoration that stays with you long after you leave.</p>
+            <button onclick="toggleBooking()" class="border-b border-brandDark pb-1 text-sm uppercase font-bold tracking-widest">Inquire about Rituals</button>
+        </div>
+        <div class="aspect-[4/5] overflow-hidden rounded-custom">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Spa">
+        </div>
+    </section>
+
+    <section class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="md:order-2">
+            <span class="text-primary font-bold uppercase tracking-widest text-xs mb-4 block">The Terroir</span>
+            <h2 class="text-4xl md:text-5xl mb-6">Mindful Gastronomy</h2>
+            <p class="text-stone-500 leading-relaxed mb-8 font-light text-lg">Farm-to-table isn’t a trend here; it’s our heritage. Join our chef for a foraging walk followed by a private sunset dinner in the ancient olive groves, featuring organic wines and ingredients from our own garden.</p>
+            <button onclick="toggleBooking()" class="border-b border-brandDark pb-1 text-sm uppercase font-bold tracking-widest">View the Seasonal Menu</button>
+        </div>
+        <div class="aspect-[4/5] overflow-hidden rounded-custom md:order-1">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover" alt="Dining">
+        </div>
+    </section>
+</main>
+
+<footer class="bg-brandBeige py-20 text-center">
+    <div class="text-2xl font-serif font-bold tracking-widest mb-4">AL-MARÉ</div>
+    <p class="text-stone-400 text-xs uppercase tracking-widest">Menorca • Spain</p>
+</footer>
+
+<div id="bookingModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+    <div class="glass-modal w-full max-w-lg p-8 rounded-custom shadow-2xl relative">
+        <button onclick="toggleBooking()" class="absolute top-4 right-4 text-stone-400">✕</button>
+        <div id="bookingFormContent">
+            <h2 class="text-3xl mb-6">Plan Your Experience</h2>
+            <form class="space-y-4" onsubmit="handleBooking(event)">
+                <input type="date" required class="w-full border-stone-200 rounded-custom">
+                <select class="w-full border-stone-200 rounded-custom">
+                    <option>Thermal Circuit Access</option>
+                    <option>Sunset Foraging Dinner</option>
+                    <option>Signature Wellness Retreat</option>
+                </select>
+                <button type="submit" class="w-full bg-accent text-white py-4 rounded-custom uppercase font-bold tracking-widest">Check Availability</button>
+            </form>
+        </div>
+        <div id="successMessage" class="hidden text-center py-10">
+            <h2 class="text-3xl text-primary mb-4">Inquiry Sent</h2>
+            <p class="text-stone-500 mb-6">Our concierge will contact you shortly.</p>
+            <button onclick="toggleBooking()" class="font-bold border-b border-brandDark">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleBooking() {
+        document.getElementById('bookingModal').classList.toggle('hidden');
+    }
+    function handleBooking(e) {
+        e.preventDefault();
+        document.getElementById('bookingFormContent').classList.add('hidden');
+        document.getElementById('successMessage').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
