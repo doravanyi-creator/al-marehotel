@@ -9,20 +9,94 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    <script>
-        tailwind.config = {
-          theme: {
-            extend: {
-              colors: {
-                primary: '#8ba88e', accent: '#c27c65', brandDark: '#2d2a26',
-                brandBeige: '#f4f1ea', brandWhite: '#fafafa',
-              },
-              fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Cormorant Garamond', 'serif'] },
-              borderRadius: { 'custom': '4px' }
-            }
-          }
+    <nav class="fixed w-full z-50 backdrop-blur-md border-b border-stone-100 bg-brandWhite/90">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="index.html" class="text-2xl font-serif font-bold tracking-widest z-[70]">AL-MARÉ</a>
+        
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
+            <a class="hover:text-primary transition-colors" href="index.html#philosophy">Philosophy</a>
+            <a class="hover:text-primary transition-colors" href="experiences.html">Experiences</a>
+            <a class="hover:text-primary transition-colors" href="rooms.html">Rooms</a>
+            <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <button onclick="toggleBooking()" class="bg-brandDark text-white px-5 py-2 rounded-custom text-[10px] md:text-xs uppercase tracking-widest hover:bg-zinc-800 transition-all">Book Now</button>
+            
+            <button onclick="toggleMobileMenu()" class="md:hidden text-brandDark focus:outline-none z-[70]">
+                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobileMenu" class="fixed inset-0 bg-brandWhite/98 backdrop-blur-xl z-[60] flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-500">
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif hover:text-primary" href="index.html#philosophy">Philosophy</a>
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif hover:text-primary" href="experiences.html">Experiences</a>
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif hover:text-primary" href="rooms.html">Rooms</a>
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif hover:text-primary" href="contact.html">Contact</a>
+        <div class="pt-8">
+            <p class="text-[10px] uppercase tracking-[0.3em] text-stone-400">Menorca, Spain</p>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Initialize AOS
+    AOS.init({ once: true, duration: 1000 });
+
+    // Custom Cursor
+    const cursor = document.getElementById('custom-cursor');
+    document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const icon = document.getElementById('menuIcon');
+        
+        if (menu.classList.contains('opacity-0')) {
+            // Open
+            menu.classList.remove('opacity-0', 'pointer-events-none');
+            menu.classList.add('opacity-100');
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />'; // X Icon
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        } else {
+            // Close
+            menu.classList.add('opacity-0', 'pointer-events-none');
+            menu.classList.remove('opacity-100');
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" />'; // Hamburger Icon
+            document.body.style.overflow = ''; // Re-enable scroll
         }
-    </script>
+    }
+
+    // Local Time
+    function updateTime() {
+        const options = { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Madrid' };
+        const time = new Intl.DateTimeFormat('en-GB', options).format(new Date());
+        document.getElementById('local-time').innerText = `Menorca: ${time}`;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Booking Engine Toggles
+    function toggleBooking() { 
+        document.getElementById('bookingModal').classList.toggle('hidden'); 
+    }
+    
+    function handleBooking(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        btn.innerText = "Consulting Concierge...";
+        setTimeout(() => {
+            document.getElementById('bookingFormContent').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+        }, 1500);
+    }
+</script>
     
     <style>
         h1, h2, h3 { font-family: 'Cormorant Garamond', serif; letter-spacing: -0.01em; }
