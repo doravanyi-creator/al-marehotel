@@ -21,10 +21,8 @@
     <style>
         h1, h2, h3 { font-family: 'Cormorant Garamond', serif; letter-spacing: -0.01em; }
         #custom-cursor { width: 24px; height: 24px; border: 1.5px solid #c27c65; background-color: rgba(194, 124, 101, 0.1); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transform: translate3d(0, 0, 0); will-change: transform; transition: width 0.3s, height 0.3s; }
-        @media (min-width: 1024px) { body, a, button, input, textarea { cursor: none !important; } }
+        @media (min-width: 1024px) { body, a, button { cursor: none !important; } }
         @media (max-width: 1023px) { #custom-cursor { display: none; } }
-        input, textarea { border: 1px solid #e5e7eb !important; border-radius: 4px !important; transition: all 0.3s ease; }
-        input:focus, textarea:focus { outline: none !important; border-color: #c27c65 !important; ring: 0px !important; }
     </style>
 </head>
 <body class="bg-brandBeige text-brandDark antialiased">
@@ -35,82 +33,9 @@
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <a href="index.html" class="text-2xl font-serif font-bold tracking-widest z-[70]">AL-MARÉ</a>
         <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
-            <a class="hover:text-primary transition-colors" href="index.html#philosophy">Philosophy</a>
+            <a class="hover:text-primary transition-colors" href="index.html">Home</a>
             <a class="hover:text-primary transition-colors" href="experiences.html">Experiences</a>
             <a class="hover:text-primary transition-colors" href="rooms.html">Rooms</a>
             <a class="text-primary" href="contact.html">Contact</a>
         </div>
-        <div class="flex items-center space-x-4">
-            <button onclick="toggleBooking()" class="bg-brandDark text-white px-5 py-2 rounded-custom text-[10px] md:text-xs uppercase tracking-widest">Book Now</button>
-            <button onclick="toggleMobileMenu()" class="md:hidden text-brandDark z-[70] p-2">
-                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" /></svg>
-            </button>
-        </div>
-    </div>
-</nav>
-
-<main class="pt-40 pb-24 max-w-5xl mx-auto px-6">
-    <div class="text-center mb-20" data-aos="fade-up">
-        <h1 class="text-6xl mb-4">The Concierge</h1>
-        <p class="text-stone-500 font-serif italic text-xl">Inquire about your sanctuary. We respond within 24 hours.</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-20">
-        <div class="space-y-12" data-aos="fade-right">
-            <div>
-                <h3 class="text-xs uppercase tracking-widest text-accent mb-4">Location</h3>
-                <p class="text-lg">Sant Lluís, Menorca, Spain</p>
-            </div>
-            <div>
-                <h3 class="text-xs uppercase tracking-widest text-accent mb-4">Direct</h3>
-                <p class="text-lg">hello@almare-hotel.com<br>+34 971 000 000</p>
-            </div>
-        </div>
-
-        <div data-aos="fade-left">
-            <form action="https://formspree.io/f/xeelyjgw" method="POST" class="space-y-6">
-                <div>
-                    <label class="text-[10px] uppercase tracking-widest mb-2 block">Full Name</label>
-                    <input type="text" name="name" required placeholder="Guest Name" class="w-full bg-white border-0 py-4 px-4 text-sm focus:ring-0">
-                </div>
-                <div>
-                    <label class="text-[10px] uppercase tracking-widest mb-2 block">Email Address</label>
-                    <input type="email" name="email" required placeholder="email@example.com" class="w-full bg-white border-0 py-4 px-4 text-sm focus:ring-0">
-                </div>
-                <div>
-                    <label class="text-[10px] uppercase tracking-widest mb-2 block">Your Inquiry</label>
-                    <textarea name="message" rows="4" required placeholder="Tell us about your planned stay..." class="w-full bg-white border-0 py-4 px-4 text-sm focus:ring-0"></textarea>
-                </div>
-                <input type="text" name="_gotcha" style="display:none">
-                
-                <button type="submit" class="bg-brandDark text-white w-full py-5 uppercase text-xs tracking-widest font-bold hover:bg-zinc-800 transition-all">
-                    Send Inquiry
-                </button>
-            </form>
-            </div>
-    </div>
-</main>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({ once: true });
-    const cursor = document.getElementById('custom-cursor');
-    let mX = 0, mY = 0, cX = 0, cY = 0;
-    document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
-    function updateCursor() {
-        cX += (mX - cX) * 0.12; cY += (mY - cY) * 0.12;
-        cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
-        requestAnimationFrame(updateCursor);
-    }
-    updateCursor();
-
-    function toggleMobileMenu() {
-        const menu = document.getElementById('mobileMenu');
-        const icon = document.getElementById('menuIcon');
-        const isOpen = !menu.classList.contains('opacity-0');
-        menu.classList.toggle('opacity-0'); menu.classList.toggle('pointer-events-none');
-        icon.innerHTML = isOpen ? '<path d="M4 8h16M4 16h16" />' : '<path d="M6 18L18 6M6 6l12 12" />';
-    }
-</script>
-</body>
-</html>
+        <button onclick="window.location.href='rooms.html'" class="bg-brandDark text-white px-
