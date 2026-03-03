@@ -21,10 +21,10 @@
     <style>
         h1, h2, h3 { font-family: 'Cormorant Garamond', serif; letter-spacing: -0.01em; }
         #custom-cursor { width: 24px; height: 24px; border: 1.5px solid #c27c65; background-color: rgba(194, 124, 101, 0.1); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transform: translate3d(0, 0, 0); will-change: transform; transition: width 0.3s, height 0.3s; }
-        @media (min-width: 1024px) { body, a, button { cursor: none !important; } }
+        @media (min-width: 1024px) { body, a, button, input, textarea { cursor: none !important; } }
         @media (max-width: 1023px) { #custom-cursor { display: none; } }
-        input, textarea { border-color: #e5e7eb !important; border-radius: 4px !important; }
-        input:focus, textarea:focus { ring-color: #8ba88e !important; border-color: #8ba88e !important; }
+        input, textarea { border: 1px solid #e5e7eb !important; border-radius: 4px !important; transition: all 0.3s ease; }
+        input:focus, textarea:focus { outline: none !important; border-color: #c27c65 !important; ring: 0px !important; }
     </style>
 </head>
 <body class="bg-brandBeige text-brandDark antialiased">
@@ -47,49 +47,47 @@
             </button>
         </div>
     </div>
-    <div id="mobileMenu" class="fixed inset-0 bg-brandWhite z-[60] flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-500">
-        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="index.html">Home</a>
-        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="experiences.html">Experiences</a>
-        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="rooms.html">Rooms</a>
-        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="contact.html">Contact</a>
-    </div>
 </nav>
 
 <main class="pt-40 pb-24 max-w-5xl mx-auto px-6">
     <div class="text-center mb-20" data-aos="fade-up">
-        <h1 class="text-6xl mb-4">Connect With Us</h1>
-        <p class="text-stone-500 font-serif italic text-xl">Our concierge is at your service for any bespoke requirements.</p>
+        <h1 class="text-6xl mb-4">The Concierge</h1>
+        <p class="text-stone-500 font-serif italic text-xl">Inquire about your sanctuary. We respond within 24 hours.</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-20">
         <div class="space-y-12" data-aos="fade-right">
             <div>
-                <h3 class="text-xs uppercase tracking-widest text-accent mb-4">The Location</h3>
-                <p class="text-lg">Camí de Cavalls, s/n<br>07710 Sant Lluís, Menorca<br>Spain</p>
+                <h3 class="text-xs uppercase tracking-widest text-accent mb-4">Location</h3>
+                <p class="text-lg">Sant Lluís, Menorca, Spain</p>
             </div>
             <div>
-                <h3 class="text-xs uppercase tracking-widest text-accent mb-4">Reservations</h3>
-                <p class="text-lg">hello@al-mare-hotel.com<br>+34 971 000 000</p>
+                <h3 class="text-xs uppercase tracking-widest text-accent mb-4">Direct</h3>
+                <p class="text-lg">hello@almare-hotel.com<br>+34 971 000 000</p>
             </div>
         </div>
 
         <div data-aos="fade-left">
-            <form class="space-y-6">
+            <form action="https://formspree.io/f/xeelyjgw" method="POST" class="space-y-6">
                 <div>
                     <label class="text-[10px] uppercase tracking-widest mb-2 block">Full Name</label>
-                    <input type="text" placeholder="Your Name" class="w-full bg-white border-0 py-4 px-4 text-sm">
+                    <input type="text" name="name" required placeholder="Guest Name" class="w-full bg-white border-0 py-4 px-4 text-sm focus:ring-0">
                 </div>
                 <div>
                     <label class="text-[10px] uppercase tracking-widest mb-2 block">Email Address</label>
-                    <input type="email" placeholder="email@example.com" class="w-full bg-white border-0 py-4 px-4 text-sm">
+                    <input type="email" name="email" required placeholder="email@example.com" class="w-full bg-white border-0 py-4 px-4 text-sm focus:ring-0">
                 </div>
                 <div>
-                    <label class="text-[10px] uppercase tracking-widest mb-2 block">Message</label>
-                    <textarea rows="4" placeholder="How can we assist you?" class="w-full bg-white border-0 py-4 px-4 text-sm"></textarea>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block">Your Inquiry</label>
+                    <textarea name="message" rows="4" required placeholder="Tell us about your planned stay..." class="w-full bg-white border-0 py-4 px-4 text-sm focus:ring-0"></textarea>
                 </div>
-                <button type="submit" class="bg-brandDark text-white w-full py-5 uppercase text-xs tracking-widest font-bold hover:bg-zinc-800 transition-colors">Send Inquiry</button>
+                <input type="text" name="_gotcha" style="display:none">
+                
+                <button type="submit" class="bg-brandDark text-white w-full py-5 uppercase text-xs tracking-widest font-bold hover:bg-zinc-800 transition-all">
+                    Send Inquiry
+                </button>
             </form>
-        </div>
+            </div>
     </div>
 </main>
 
@@ -105,14 +103,14 @@
         requestAnimationFrame(updateCursor);
     }
     updateCursor();
+
     function toggleMobileMenu() {
-        const menu = document.getElementById('mobileMenu'); const icon = document.getElementById('menuIcon');
+        const menu = document.getElementById('mobileMenu');
+        const icon = document.getElementById('menuIcon');
         const isOpen = !menu.classList.contains('opacity-0');
         menu.classList.toggle('opacity-0'); menu.classList.toggle('pointer-events-none');
-        icon.innerHTML = isOpen ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" />' : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />';
-        document.body.style.overflow = isOpen ? '' : 'hidden';
+        icon.innerHTML = isOpen ? '<path d="M4 8h16M4 16h16" />' : '<path d="M6 18L18 6M6 6l12 12" />';
     }
-    function toggleBooking() { document.getElementById('bookingModal').classList.toggle('hidden'); }
 </script>
 </body>
 </html>
