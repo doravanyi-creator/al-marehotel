@@ -3,46 +3,54 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>AL-MARÉ Boutique Hotel | Menorca Wellness Retreat</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <title>AL-MARÉ Boutique Hotel | Menorca Beachfront Sanctuary</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script>
         tailwind.config = {
           theme: {
             extend: {
               colors: {
-                primary: '#8ba88e', 
-                accent: '#c27c65',  
-                brandDark: '#2d2a26',
-                brandBeige: '#f4f1ea', 
-                brandWhite: '#fafafa', 
+                primary: '#8ba88e', accent: '#c27c65', brandDark: '#2d2a26',
+                brandBeige: '#f4f1ea', brandWhite: '#fafafa',
               },
-              fontFamily: {
-                sans: ['Manrope', 'sans-serif'],
-                serif: ['Cormorant Garamond', 'serif'],
-              },
+              fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Cormorant Garamond', 'serif'] },
               borderRadius: { 'custom': '4px' }
             }
           }
         }
     </script>
+    
     <style>
         h1, h2, h3 { font-family: 'Cormorant Garamond', serif; letter-spacing: -0.01em; }
-        .hero-overlay { background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)); }
+        .hero-overlay { background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)); }
         .glass-modal { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-        .section-padding { padding: 5rem 0; }
-        @media (min-width: 1024px) { .section-padding { padding: 8rem 0; } }
+        
+        #custom-cursor {
+            width: 20px; height: 20px; border: 1px solid #c27c65;
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 9999; transition: transform 0.1s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        /* Minimalist Spotify Player Styling */
+        .spotify-container { opacity: 0.8; transition: opacity 0.3s; }
+        .spotify-container:hover { opacity: 1; }
     </style>
 </head>
-<body class="font-sans text-brandDark bg-brandWhite antialiased">
+<body class="font-sans text-brandDark bg-brandWhite antialiased cursor-none">
+
+<div id="custom-cursor"></div>
 
 <nav class="fixed w-full z-50 backdrop-blur-md border-b border-stone-100 bg-brandWhite/90">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <a href="index.html" class="text-2xl font-serif font-bold tracking-widest">AL-MARÉ</a>
         <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
-            <a class="hover:text-primary transition-colors" href="index.html#philosophy">Philosophy</a>
+            <a class="hover:text-primary transition-colors" href="#philosophy">Philosophy</a>
             <a class="hover:text-primary transition-colors" href="experiences.html">Experiences</a>
             <a class="hover:text-primary transition-colors" href="rooms.html">Rooms</a>
             <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
@@ -53,42 +61,88 @@
 
 <header class="relative h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img alt="Hotel Exterior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpFp2UQl5OhjRBJokxAyu3xrJhat2zHq2Xuj1nmuzBmH18T_S_7k_gB25VXZ7GrDS0IV_CTixtoAOrLDDlrvxx5wvTyUWg9PDytsMVGg4zvU1Rbaev4DX1jYV7ddWYPfQyv6RBUdJtTvWl9m0VQvn_Kblbqi2Smgj-YJLgOHSZG0BJvqBo0Kw4tsrHc8puEkMW44hbbwPHvAmnfaTbauGst9oC_j1dFLf5ur7qvq_zxnZrx_Y3CKUdEUfh1NoAcdvNqnKkcewsyGM"/>
+        <img alt="Seaside Boutique Hotel in Menorca" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop"/>
         <div class="absolute inset-0 hero-overlay"></div>
     </div>
-    <div class="relative z-10 text-center px-6 max-w-4xl">
-        <h1 class="text-5xl md:text-8xl text-white mb-6">AL-MARÉ Boutique Hotel</h1>
-        <p class="text-xl md:text-2xl text-white/90 font-light italic mb-10 font-serif">"Where Wellness Becomes the Journey"</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onclick="toggleBooking()" class="bg-primary text-white px-10 py-4 rounded-custom text-sm uppercase tracking-widest font-semibold hover:shadow-lg transition-all">Book Your Retreat</button>
-            <a href="experiences.html" class="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-10 py-4 rounded-custom text-sm uppercase tracking-widest font-semibold hover:bg-white/20 transition-all">Discover the Experience</a>
-        </div>
+    <div class="relative z-10 text-center px-6" data-aos="fade-up" data-aos-duration="1500">
+        <span class="text-white text-xs uppercase tracking-[0.5em] mb-4 block">Menorca • Spain</span>
+        <h1 class="text-6xl md:text-9xl text-white mb-6">AL-MARÉ</h1>
+        <p class="text-xl md:text-2xl text-white/90 font-serif italic mb-10">Luxury anchored in the shoreline.</p>
+        <button onclick="toggleBooking()" class="bg-primary text-white px-10 py-4 rounded-custom text-sm uppercase tracking-widest font-semibold hover:bg-opacity-90 transition-all">Reserve Your Stay</button>
     </div>
 </header>
 
-<section id="philosophy" class="section-padding bg-brandBeige">
+<section id="philosophy" class="py-24 bg-brandBeige overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-4 block">Our Philosophy</span>
-                <h2 class="text-4xl md:text-6xl mb-8 leading-tight">Wellness at the Center</h2>
+            <div data-aos="fade-right">
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-4 block">Our Ethos</span>
+                <h2 class="text-4xl md:text-6xl mb-8 leading-tight">The Sea as a Sanctuary</h2>
                 <div class="space-y-6 text-stone-600 text-lg leading-relaxed font-light">
-                    <p>At AL-MARÉ, wellness is not an amenity—it is our foundation. We believe true luxury lies in the profound connection between the self and the natural world, fostered through slow living and restorative silence.</p>
-                    <p>With a limited number of rooms, we ensure a highly personalized experience where spa-centered sustainable luxury meets the Mediterranean horizon.</p>
+                    <p>Located on the pristine edges of the Mediterranean, AL-MARÉ is more than a hotel—it is a dialogue between architecture and the horizon. We believe the sound of the waves is the most potent therapy we offer.</p>
+                    <p>Our suites are designed to invite the sea air in, using sustainable materials that mirror the limestone cliffs and turquoise waters of our private cove.</p>
                 </div>
             </div>
-            <div class="relative">
-                <img alt="Spa" class="rounded-custom shadow-2xl w-full h-[600px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqCe7NMaUOLozLsySqVbd3Kf6Uk3kuQGxBSnFW4YdzGXA90xRYL3Ggk5wwweTUNQjYAFGNdzztKahWQcGcELvwLqe-ejnM6lKkyDQ3saWUNOJODdYIoODeQVPHTdS5mAvTccLviZJzulZVgg78upRPle4MDgpZG1AtHwF3eT0B8l5s0majXA4ZO549wTKMP4MwWlyaZV-q9Zbo5MUFKyoJ-onvWWXxCQ3mrFHpAPpTriJeF6sHd1wbviM_frX20SMyH18_5P1a5Js"/>
+            <div class="relative" data-aos="fade-left">
+                <img alt="Beachfront Spa" class="rounded-custom shadow-2xl w-full h-[600px] object-cover" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop"/>
             </div>
         </div>
     </div>
 </section>
 
-<div id="bookingModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+<section class="py-24 bg-brandWhite">
+    <div class="max-w-5xl mx-auto px-6 text-center" data-aos="fade-up">
+        <span class="text-accent font-bold uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Footprint</span>
+        <h2 class="text-4xl md:text-5xl mb-12">Honoring the Coastline</h2>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <div class="text-primary text-3xl">◈</div>
+                <h4 class="font-serif text-xl">Plastic Free</h4>
+                <p class="text-stone-500 text-sm font-light">Protecting our Balearic waters by eliminating all single-use plastics.</p>
+            </div>
+            <div class="space-y-4">
+                <div class="text-primary text-3xl">◈</div>
+                <h4 class="font-serif text-xl">Solar Powered</h4>
+                <p class="text-stone-500 text-sm font-light">Clean energy harnessed from the 300 days of sunshine we enjoy.</p>
+            </div>
+            <div class="space-y-4">
+                <div class="text-primary text-3xl">◈</div>
+                <h4 class="font-serif text-xl">Zero Mile</h4>
+                <p class="text-stone-500 text-sm font-light">Fresh sea-to-table dining sourced directly from local fisherman.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-brandDark text-white/90 py-20">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-16 items-start">
+        <div class="space-y-6">
+            <div class="text-2xl font-serif font-bold tracking-widest">AL-MARÉ</div>
+            <div class="space-y-2">
+                <p id="local-time" class="text-xl font-serif text-primary">Menorca: --:--</p>
+                <p class="text-white/40 text-sm font-light">Coastal Breeze • 22°C</p>
+            </div>
+        </div>
+        
+        <div class="spotify-container">
+            <h4 class="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-4">The Soundscape</h4>
+            <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZqd5Jicv9B0?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="rounded-lg shadow-lg"></iframe>
+            <p class="text-white/30 text-[9px] italic mt-2">Curated ambient sounds for your browsing journey.</p>
+        </div>
+
+        <div class="md:text-right">
+            <h4 class="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-4">Newsletter</h4>
+            <input type="email" placeholder="Your Email" class="bg-transparent border-b border-white/20 py-2 w-full md:w-64 focus:outline-none focus:border-primary text-sm font-light mb-4">
+            <button class="text-xs uppercase tracking-widest font-bold block md:ml-auto border-b border-white pb-1">Subscribe</button>
+        </div>
+    </div>
+</footer>
+
+<div id="bookingModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
     <div class="glass-modal w-full max-w-lg p-8 rounded-custom shadow-2xl relative">
         <button onclick="toggleBooking()" class="absolute top-4 right-4 text-stone-400 hover:text-brandDark">✕</button>
         <div id="bookingFormContent">
-            <h2 class="text-3xl mb-6">Reserve Your Sanctuary</h2>
+            <h2 class="text-3xl mb-6">Request Your Sanctuary</h2>
             <form id="mockBookingForm" class="space-y-4" onsubmit="handleBooking(event)">
                 <div class="grid grid-cols-2 gap-4">
                     <input type="date" required class="w-full border-stone-200 rounded-custom">
@@ -99,42 +153,46 @@
                     <option>Sea View Suite</option>
                     <option>Wellness Suite</option>
                 </select>
-                <button type="submit" class="w-full bg-accent text-white py-4 rounded-custom uppercase tracking-widest font-bold hover:bg-opacity-90 transition-all">Verify Availability</button>
+                <button type="submit" class="w-full bg-accent text-white py-4 rounded-custom uppercase tracking-widest font-bold hover:bg-opacity-90 transition-all">Check Availability</button>
             </form>
         </div>
         <div id="successMessage" class="hidden text-center py-10">
-            <h2 class="text-3xl mb-4 text-primary">Request Received</h2>
-            <p class="text-stone-600 mb-6">Our concierge will contact you within 4 hours to finalize your stay.</p>
-            <button onclick="toggleBooking()" class="font-bold border-b border-brandDark">Return to Sanctuary</button>
+            <h2 class="text-3xl mb-4 text-primary font-serif">Awaited Serenity</h2>
+            <p class="text-stone-600 mb-6">Request received. Our concierge will reach out shortly.</p>
+            <button onclick="toggleBooking()" class="font-bold border-b border-brandDark">Close</button>
         </div>
     </div>
 </div>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    function toggleBooking() {
-        const modal = document.getElementById('bookingModal');
-        modal.classList.toggle('hidden');
-        document.getElementById('bookingFormContent').classList.remove('hidden');
-        document.getElementById('successMessage').classList.add('hidden');
+    AOS.init({ once: true, duration: 1000 });
+
+    const cursor = document.getElementById('custom-cursor');
+    document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    function updateTime() {
+        const options = { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Madrid' };
+        const time = new Intl.DateTimeFormat('en-GB', options).format(new Date());
+        document.getElementById('local-time').innerText = `Menorca: ${time}`;
     }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    function toggleBooking() { document.getElementById('bookingModal').classList.toggle('hidden'); }
     function handleBooking(e) {
         e.preventDefault();
-        const submitBtn = e.target.querySelector('button');
-        submitBtn.innerText = "Consulting Concierge...";
+        const btn = e.target.querySelector('button');
+        btn.innerText = "Processing...";
         setTimeout(() => {
             document.getElementById('bookingFormContent').classList.add('hidden');
             document.getElementById('successMessage').classList.remove('hidden');
-            submitBtn.innerText = "Verify Availability";
         }, 1500);
     }
 </script>
-
-<footer class="bg-brandBeige border-t border-stone-200 py-16">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-        <div class="text-2xl font-serif font-bold tracking-widest mb-4">AL-MARÉ</div>
-        <p class="text-stone-400 text-xs uppercase tracking-widest">© 2024 AL-MARÉ Boutique Hotel. Menorca, Spain.</p>
-    </div>
-</footer>
 
 </body>
 </html>
