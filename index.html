@@ -4,57 +4,27 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>AL-MARÉ Boutique Hotel | Menorca Beachfront Sanctuary</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet"/>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    
     <script>
         tailwind.config = {
           theme: {
             extend: {
               colors: { primary: '#8ba88e', accent: '#c27c65', brandDark: '#2d2a26', brandBeige: '#f4f1ea', brandWhite: '#fafafa' },
-              fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Cormorant Garamond', 'serif'] },
+              fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Cormorant Gramamond', 'serif'] },
               borderRadius: { 'custom': '4px' }
             }
           }
         }
     </script>
-    
     <style>
         h1, h2, h3 { font-family: 'Cormorant Garamond', serif; letter-spacing: -0.01em; }
-        
-        /* OPTIMIZED ORANGE TRACKER CURSOR */
-        #custom-cursor {
-            width: 24px; height: 24px;
-            border: 1.5px solid #c27c65;
-            background-color: rgba(194, 124, 101, 0.1);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate3d(0, 0, 0); /* Hardware Acceleration */
-            will-change: transform;
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-        }
-
-        /* Only show custom cursor on Desktop */
-        @media (min-width: 1024px) {
-            body, a, button { cursor: none !important; }
-        }
-        @media (max-width: 1023px) {
-            #custom-cursor { display: none; }
-            body { cursor: auto !important; }
-        }
-
-        .glass-modal { 
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-        }
-        
+        #custom-cursor { width: 24px; height: 24px; border: 1.5px solid #c27c65; background-color: rgba(194, 124, 101, 0.1); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transform: translate3d(0, 0, 0); will-change: transform; transition: width 0.3s, height 0.3s, background-color 0.3s; }
+        @media (min-width: 1024px) { body, a, button { cursor: none !important; } }
+        @media (max-width: 1023px) { #custom-cursor { display: none; } }
+        .glass-modal { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
         html { scroll-behavior: smooth; }
-        .hero-overlay { background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)); }
     </style>
 </head>
 <body class="font-sans text-brandDark bg-brandWhite antialiased">
@@ -64,24 +34,19 @@
 <nav class="fixed w-full z-50 backdrop-blur-md border-b border-stone-100 bg-brandWhite/90">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <a href="index.html" class="text-2xl font-serif font-bold tracking-widest z-[70]">AL-MARÉ</a>
-        
         <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
             <a class="hover:text-primary transition-colors" href="#philosophy">Philosophy</a>
             <a class="hover:text-primary transition-colors" href="experiences.html">Experiences</a>
             <a class="hover:text-primary transition-colors" href="rooms.html">Rooms</a>
             <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
         </div>
-
         <div class="flex items-center space-x-4">
             <button onclick="toggleBooking()" class="bg-brandDark text-white px-5 py-2 rounded-custom text-[10px] md:text-xs uppercase tracking-widest hover:bg-zinc-800 transition-all">Book Now</button>
             <button onclick="toggleMobileMenu()" class="md:hidden text-brandDark z-[70] p-2">
-                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" />
-                </svg>
+                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" /></svg>
             </button>
         </div>
     </div>
-
     <div id="mobileMenu" class="fixed inset-0 bg-brandWhite z-[60] flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-500">
         <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="#philosophy">Philosophy</a>
         <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="experiences.html">Experiences</a>
@@ -92,120 +57,50 @@
 
 <header class="relative h-screen flex items-center justify-center overflow-hidden">
     <img class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop"/>
-    <div class="absolute inset-0 hero-overlay"></div>
-    <div class="relative z-10 text-center px-6" data-aos="fade-up" data-aos-duration="1500">
-        <span class="text-white text-xs uppercase tracking-[0.5em] mb-4 block">Menorca • Spain</span>
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative z-10 text-center px-6" data-aos="fade-up">
         <h1 class="text-6xl md:text-9xl text-white mb-6">AL-MARÉ</h1>
         <p class="text-xl md:text-2xl text-white/90 font-serif italic mb-10">Luxury anchored in the shoreline.</p>
         <button onclick="toggleBooking()" class="bg-primary text-white px-10 py-4 rounded-custom text-sm uppercase tracking-widest font-semibold hover:bg-opacity-90 transition-all">Reserve Your Stay</button>
     </div>
 </header>
 
-<section id="philosophy" class="py-24 bg-brandBeige overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div data-aos="fade-right">
-                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-4 block">Our Ethos</span>
-                <h2 class="text-4xl md:text-6xl mb-8 leading-tight">The Sea as a Sanctuary</h2>
-                <div class="space-y-6 text-stone-600 text-lg leading-relaxed font-light">
-                    <p>Located on the pristine edges of the Mediterranean, AL-MARÉ is more than a hotel—it is a dialogue between architecture and the horizon.</p>
-                    <p>Our suites are designed to invite the sea air in, using sustainable materials that mirror the limestone cliffs of our private cove.</p>
-                </div>
-            </div>
-            <div class="relative" data-aos="fade-left">
-                <img alt="Beachfront Spa" class="rounded-custom shadow-2xl w-full h-[500px] object-cover" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop"/>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer class="bg-brandDark text-white/90 py-20">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-        <div>
-            <div class="text-2xl font-serif font-bold tracking-widest mb-6">AL-MARÉ</div>
-            <p id="local-time" class="text-xl font-serif text-primary">Menorca: --:--</p>
-        </div>
-        <div class="md:text-right">
-            <p class="text-white/40 text-sm font-light">© 2024 AL-MARÉ Boutique Hotel</p>
-        </div>
-    </div>
-</footer>
-
 <div id="bookingModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-black/60">
     <div class="glass-modal w-full max-w-lg p-8 rounded-custom shadow-2xl relative">
-        <button onclick="toggleBooking()" class="absolute top-4 right-4 text-stone-400 text-xl">✕</button>
-        <div id="bookingFormContent">
-            <h2 class="text-3xl mb-6 font-serif text-center">Plan Your Retreat</h2>
-            <form onsubmit="handleBooking(event)" class="space-y-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="flex flex-col"><label class="text-[10px] uppercase mb-1">Check In</label><input type="date" required class="border-stone-200 rounded-custom text-brandDark"></div>
-                    <div class="flex flex-col"><label class="text-[10px] uppercase mb-1">Check Out</label><input type="date" required class="border-stone-200 rounded-custom text-brandDark"></div>
-                </div>
-                <button type="submit" class="w-full bg-accent text-white py-4 rounded-custom uppercase font-bold tracking-widest hover:opacity-90 transition-all">Verify Availability</button>
-            </form>
-        </div>
-        <div id="successMessage" class="hidden text-center py-10">
-            <h2 class="text-3xl text-primary font-serif mb-4">Awaited Serenity</h2>
-            <p class="text-stone-600 mb-6">Your request has been sent to our concierge.</p>
-            <button onclick="toggleBooking()" class="border-b border-brandDark font-bold">Return</button>
-        </div>
+        <button onclick="toggleBooking()" class="absolute top-4 right-4 text-stone-400">✕</button>
+        <h2 class="text-3xl mb-6 font-serif text-center">Inquiry for Sanctuary</h2>
+        <form action="https://formspree.io/f/xeelyjgw" method="POST" class="space-y-4">
+            <input type="hidden" name="_subject" value="New Booking Inquiry - AL-MARÉ Homepage">
+            <div class="grid grid-cols-2 gap-4">
+                <input type="date" name="arrival" required class="border-stone-200 rounded-custom w-full">
+                <input type="date" name="departure" required class="border-stone-200 rounded-custom w-full">
+            </div>
+            <input type="email" name="email" required placeholder="Your email address" class="w-full border-stone-200 rounded-custom">
+            <button type="submit" class="w-full bg-accent text-white py-4 rounded-custom uppercase font-bold tracking-widest">Verify Availability</button>
+        </form>
     </div>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Initialize AOS
-    AOS.init({ once: true, duration: 1000 });
-
-    // 1. PERFORMANCE OPTIMIZED CURSOR
+    AOS.init({ once: true });
     const cursor = document.getElementById('custom-cursor');
     let mX = 0, mY = 0, cX = 0, cY = 0;
-
     document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
-
     function updateCursor() {
-        // Smooth interpolation (the 0.1 value controls the "weight" of the cursor)
-        cX += (mX - cX) * 0.12;
-        cY += (mY - cY) * 0.12;
+        cX += (mX - cX) * 0.12; cY += (mY - cY) * 0.12;
         cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
         requestAnimationFrame(updateCursor);
     }
     updateCursor();
-
-    // Hover scale effect
-    document.querySelectorAll('a, button').forEach(item => {
-        item.addEventListener('mouseenter', () => { cursor.style.transform += " scale(1.8)"; cursor.style.backgroundColor = "rgba(194,124,101,0.2)"; });
-        item.addEventListener('mouseleave', () => { cursor.style.backgroundColor = "rgba(194,124,101,0.1)"; });
-    });
-
-    // 2. MOBILE MENU TOGGLE
     function toggleMobileMenu() {
         const menu = document.getElementById('mobileMenu');
         const icon = document.getElementById('menuIcon');
         const isOpen = !menu.classList.contains('opacity-0');
-        menu.classList.toggle('opacity-0');
-        menu.classList.toggle('pointer-events-none');
-        icon.innerHTML = isOpen 
-            ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" />' 
-            : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />';
-        document.body.style.overflow = isOpen ? '' : 'hidden';
+        menu.classList.toggle('opacity-0'); menu.classList.toggle('pointer-events-none');
+        icon.innerHTML = isOpen ? '<path d="M4 8h16M4 16h16" />' : '<path d="M6 18L18 6M6 6l12 12" />';
     }
-
-    // 3. LOCAL TIME
-    function updateTime() {
-        const options = { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Madrid' };
-        document.getElementById('local-time').innerText = `Menorca: ${new Intl.DateTimeFormat('en-GB', options).format(new Date())}`;
-    }
-    setInterval(updateTime, 1000); updateTime();
-
-    // 4. BOOKING ENGINE
     function toggleBooking() { document.getElementById('bookingModal').classList.toggle('hidden'); }
-    function handleBooking(e) {
-        e.preventDefault();
-        document.getElementById('bookingFormContent').classList.add('hidden');
-        document.getElementById('successMessage').classList.remove('hidden');
-    }
 </script>
-
 </body>
 </html>
