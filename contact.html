@@ -25,17 +25,83 @@
         @media (max-width: 1023px) { #custom-cursor { display: none; } }
     </style>
 </head>
-<body class="bg-brandBeige text-brandDark antialiased">
+<body class="bg-[#f4f1ea] text-[#2d2a26] antialiased">
 
 <div id="custom-cursor"></div>
 
-<nav class="fixed w-full z-50 backdrop-blur-md border-b border-stone-100 bg-brandWhite/90">
+<nav class="fixed w-full z-50 backdrop-blur-md border-b border-stone-100 bg-white/90">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="index.html" class="text-2xl font-serif font-bold tracking-widest z-[70]">AL-MARÉ</a>
+        <a href="index.html" class="text-2xl font-serif font-bold tracking-widest text-[#2d2a26]">AL-MARÉ</a>
         <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
-            <a class="hover:text-primary transition-colors" href="index.html">Home</a>
-            <a class="hover:text-primary transition-colors" href="experiences.html">Experiences</a>
-            <a class="hover:text-primary transition-colors" href="rooms.html">Rooms</a>
-            <a class="text-primary" href="contact.html">Contact</a>
+            <a class="hover:text-[#8ba88e] transition-colors" href="index.html">Home</a>
+            <a class="hover:text-[#8ba88e] transition-colors" href="experiences.html">Experiences</a>
+            <a class="hover:text-[#8ba88e] transition-colors" href="rooms.html">Rooms</a>
+            <a class="text-[#8ba88e]" href="contact.html">Contact</a>
         </div>
-        <button onclick="window.location.href='rooms.html'" class="bg-brandDark text-white px-
+        <button onclick="window.location.href='rooms.html'" class="bg-[#2d2a26] text-white px-5 py-2 rounded-custom text-xs uppercase tracking-widest">Book Now</button>
+    </div>
+</nav>
+
+<main class="pt-32 pb-24 max-w-5xl mx-auto px-6 min-h-screen">
+    <div class="text-center mb-16" data-aos="fade-up">
+        <h1 class="text-5xl md:text-7xl mb-4 text-[#2d2a26]">Concierge</h1>
+        <p class="text-stone-500 font-serif italic text-xl">We are here to curate your escape.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-16" data-aos="fade-up">
+        <div class="space-y-12">
+            <div>
+                <h3 class="text-xs uppercase tracking-widest text-[#c27c65] mb-4 font-bold">The Location</h3>
+                <p class="text-lg leading-relaxed text-stone-600">Cala d'Alcaufar, Sant Lluís<br>Menorca, Spain</p>
+            </div>
+            <div>
+                <h3 class="text-xs uppercase tracking-widest text-[#c27c65] mb-4 font-bold">The Connection</h3>
+                <p class="text-lg leading-relaxed text-stone-600">hello@almare-menorca.com<br>+34 971 000 000</p>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-custom shadow-sm border border-stone-100">
+            <form action="https://formspree.io/f/xeelyjgw" method="POST" class="space-y-6">
+                <input type="hidden" name="_subject" value="New Concierge Inquiry - AL-MARÉ">
+                <input type="hidden" name="_next" value="https://al-marehotel.netlify.app/thank-you.html">
+                
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block text-stone-400 font-bold">Full Name</label>
+                    <input type="text" name="name" required placeholder="Guest Name" class="w-full bg-stone-50 border-0 py-4 px-4 text-sm rounded-custom focus:ring-1 focus:ring-[#c27c65] transition-all">
+                </div>
+                
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block text-stone-400 font-bold">Email Address</label>
+                    <input type="email" name="email" required placeholder="email@example.com" class="w-full bg-stone-50 border-0 py-4 px-4 text-sm rounded-custom focus:ring-1 focus:ring-[#c27c65] transition-all">
+                </div>
+
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block text-stone-400 font-bold">Message</label>
+                    <textarea name="message" rows="4" required placeholder="How can our concierge assist you?" class="w-full bg-stone-50 border-0 py-4 px-4 text-sm rounded-custom focus:ring-1 focus:ring-[#c27c65] transition-all"></textarea>
+                </div>
+
+                <button type="submit" class="bg-[#2d2a26] text-white w-full py-5 uppercase text-xs tracking-widest font-bold hover:bg-zinc-800 transition-all shadow-md">
+                    Send to Concierge
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 800 });
+    
+    // Custom Cursor Logic
+    const cursor = document.getElementById('custom-cursor');
+    let mX = 0, mY = 0, cX = 0, cY = 0;
+    document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+    function updateCursor() {
+        cX += (mX - cX) * 0.12; cY += (mY - cY) * 0.12;
+        cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+</script>
+</body>
+</html>
