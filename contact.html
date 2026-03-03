@@ -2,57 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Connect | AL-MARÉ Boutique Hotel</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Contact | AL-MARÉ Boutique Hotel</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { primary: '#8ba88e', brandDark: '#2d2a26', brandWhite: '#fafafa', brandBeige: '#f4f1ea' }, fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Cormorant Garamond', 'serif'] } } } }
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: { primary: '#8ba88e', accent: '#c27c65', brandDark: '#2d2a26', brandBeige: '#f4f1ea', brandWhite: '#fafafa' },
+              fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Cormorant Garamond', 'serif'] },
+              borderRadius: { 'custom': '4px' }
+            }
+          }
+        }
     </script>
+    <style>
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; letter-spacing: -0.01em; }
+        #custom-cursor { width: 24px; height: 24px; border: 1.5px solid #c27c65; background-color: rgba(194, 124, 101, 0.1); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transform: translate3d(0, 0, 0); will-change: transform; transition: width 0.3s, height 0.3s; }
+        @media (min-width: 1024px) { body, a, button { cursor: none !important; } }
+        @media (max-width: 1023px) { #custom-cursor { display: none; } }
+        input, textarea { border-color: #e5e7eb !important; border-radius: 4px !important; }
+        input:focus, textarea:focus { ring-color: #8ba88e !important; border-color: #8ba88e !important; }
+    </style>
 </head>
-<body class="bg-brandWhite text-brandDark">
+<body class="bg-brandBeige text-brandDark antialiased">
 
-<nav class="fixed w-full z-50 backdrop-blur-md bg-white/90 border-b border-stone-100">
+<div id="custom-cursor"></div>
+
+<nav class="fixed w-full z-50 backdrop-blur-md border-b border-stone-100 bg-brandWhite/90">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="index.html" class="text-2xl font-serif font-bold tracking-widest">AL-MARÉ</a>
+        <a href="index.html" class="text-2xl font-serif font-bold tracking-widest z-[70]">AL-MARÉ</a>
         <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
-            <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+            <a class="hover:text-primary transition-colors" href="index.html#philosophy">Philosophy</a>
             <a class="hover:text-primary transition-colors" href="experiences.html">Experiences</a>
             <a class="hover:text-primary transition-colors" href="rooms.html">Rooms</a>
             <a class="text-primary" href="contact.html">Contact</a>
         </div>
+        <div class="flex items-center space-x-4">
+            <button onclick="toggleBooking()" class="bg-brandDark text-white px-5 py-2 rounded-custom text-[10px] md:text-xs uppercase tracking-widest">Book Now</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-brandDark z-[70] p-2">
+                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" /></svg>
+            </button>
+        </div>
+    </div>
+    <div id="mobileMenu" class="fixed inset-0 bg-brandWhite z-[60] flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-500">
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="index.html">Home</a>
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="experiences.html">Experiences</a>
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="rooms.html">Rooms</a>
+        <a onclick="toggleMobileMenu()" class="text-3xl font-serif" href="contact.html">Contact</a>
     </div>
 </nav>
 
-<main class="max-w-5xl mx-auto px-6 py-40">
-    <div class="text-center mb-20">
-        <h1 class="text-5xl md:text-7xl font-serif mb-6">Begin the Conversation</h1>
-        <p class="text-stone-500 text-lg font-light italic">Your sanctuary is waiting for you.</p>
+<main class="pt-40 pb-24 max-w-5xl mx-auto px-6">
+    <div class="text-center mb-20" data-aos="fade-up">
+        <h1 class="text-6xl mb-4">Connect With Us</h1>
+        <p class="text-stone-500 font-serif italic text-xl">Our concierge is at your service for any bespoke requirements.</p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-16">
-        <div class="space-y-8">
+    <div class="grid md:grid-cols-2 gap-20">
+        <div class="space-y-12" data-aos="fade-right">
             <div>
-                <h4 class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Location</h4>
-                <p class="text-stone-600 font-light">Sant Lluís, Menorca, Spain</p>
+                <h3 class="text-xs uppercase tracking-widest text-accent mb-4">The Location</h3>
+                <p class="text-lg">Camí de Cavalls, s/n<br>07710 Sant Lluís, Menorca<br>Spain</p>
             </div>
             <div>
-                <h4 class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Inquiries</h4>
-                <p class="text-stone-600 font-light">reservations@almarehotel.com</p>
-                <p class="text-stone-600 font-light">+34 971 000 000</p>
+                <h3 class="text-xs uppercase tracking-widest text-accent mb-4">Reservations</h3>
+                <p class="text-lg">hello@al-mare-hotel.com<br>+34 971 000 000</p>
             </div>
         </div>
 
-        <div class="md:col-span-2">
-            <form class="grid grid-cols-2 gap-6">
-                <input type="text" placeholder="First Name" class="border-stone-200 p-4 rounded-custom col-span-1">
-                <input type="text" placeholder="Last Name" class="border-stone-200 p-4 rounded-custom col-span-1">
-                <input type="email" placeholder="Email Address" class="border-stone-200 p-4 rounded-custom col-span-2">
-                <textarea placeholder="Tell us about your wellness goals..." class="border-stone-200 p-4 rounded-custom col-span-2 h-40"></textarea>
-                <button class="bg-brandDark text-white py-4 px-8 rounded-custom uppercase text-xs font-bold tracking-widest col-span-2">Send Message</button>
+        <div data-aos="fade-left">
+            <form class="space-y-6">
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block">Full Name</label>
+                    <input type="text" placeholder="Your Name" class="w-full bg-white border-0 py-4 px-4 text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block">Email Address</label>
+                    <input type="email" placeholder="email@example.com" class="w-full bg-white border-0 py-4 px-4 text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block">Message</label>
+                    <textarea rows="4" placeholder="How can we assist you?" class="w-full bg-white border-0 py-4 px-4 text-sm"></textarea>
+                </div>
+                <button type="submit" class="bg-brandDark text-white w-full py-5 uppercase text-xs tracking-widest font-bold hover:bg-zinc-800 transition-colors">Send Inquiry</button>
             </form>
         </div>
     </div>
 </main>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true });
+    const cursor = document.getElementById('custom-cursor');
+    let mX = 0, mY = 0, cX = 0, cY = 0;
+    document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+    function updateCursor() {
+        cX += (mX - cX) * 0.12; cY += (mY - cY) * 0.12;
+        cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu'); const icon = document.getElementById('menuIcon');
+        const isOpen = !menu.classList.contains('opacity-0');
+        menu.classList.toggle('opacity-0'); menu.classList.toggle('pointer-events-none');
+        icon.innerHTML = isOpen ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16" />' : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />';
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+    }
+    function toggleBooking() { document.getElementById('bookingModal').classList.toggle('hidden'); }
+</script>
 </body>
 </html>
