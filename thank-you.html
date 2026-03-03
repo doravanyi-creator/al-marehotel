@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Thank You | AL-MARÉ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Manrope:wght@300;400&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: { extend: { colors: { primary: '#8ba88e', accent: '#c27c65', brandDark: '#2d2a26', brandBeige: '#f4f1ea' }, fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Cormorant Garamond', 'serif'] } } }
+        }
+    </script>
+    <style>
+        #custom-cursor { width: 24px; height: 24px; border: 1.5px solid #c27c65; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate3d(0, 0, 0); transition: width 0.3s, height 0.3s; }
+        @media (min-width: 1024px) { body, a, button { cursor: none !important; } }
+    </style>
+</head>
+<body class="bg-brandBeige text-brandDark antialiased flex items-center justify-center min-h-screen">
+    <div id="custom-cursor"></div>
+
+    <div class="max-w-xl px-6 text-center">
+        <span class="text-accent uppercase tracking-[0.3em] text-[10px] mb-6 block">Inquiry Received</span>
+        <h1 class="font-serif text-5xl md:text-6xl mb-6">Your retreat begins soon.</h1>
+        <p class="text-stone-500 font-serif italic text-xl mb-12 leading-relaxed">
+            Our concierge has received your request. We will reach out within 24 hours to finalize the details of your stay.
+        </p>
+        
+        <div class="space-y-4">
+            <a href="index.html" class="block w-full bg-brandDark text-white py-4 uppercase text-xs tracking-widest font-bold hover:bg-zinc-800 transition-all">
+                Return to Homepage
+            </a>
+            <a href="https://instagram.com/your-profile" target="_blank" class="block w-full border border-brandDark text-brandDark py-4 uppercase text-xs tracking-widest font-bold hover:bg-brandDark hover:text-white transition-all">
+                Follow our Journey
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.getElementById('custom-cursor');
+        let mX = 0, mY = 0, cX = 0, cY = 0;
+        document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+        function updateCursor() {
+            cX += (mX - cX) * 0.12; cY += (mY - cY) * 0.12;
+            cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+    </script>
+</body>
+</html>
