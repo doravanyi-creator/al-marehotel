@@ -11,19 +11,21 @@
         }
     </script>
     <style>
-        /* The Fixed Cursor Styles */
+        /* CRITICAL: Ensure the cursor is fixed to the viewport */
         #custom-cursor { 
-            width: 24px; 
-            height: 24px; 
+            width: 20px; 
+            height: 20px; 
             border: 1.5px solid #c27c65; 
             background-color: rgba(194, 124, 101, 0.1); 
             border-radius: 50%; 
-            position: fixed; 
+            position: fixed; /* Keeps it relative to the screen, not the document */
+            top: 0;
+            left: 0;
             pointer-events: none; 
             z-index: 99999; 
-            transform: translate3d(0, 0, 0); 
-            will-change: transform; 
-            transition: width 0.3s, height 0.3s; 
+            will-change: transform;
+            transform: translate(-50%, -50%); /* Centers the circle on the mouse tip */
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
         @media (min-width: 1024px) { body, a, button { cursor: none !important; } }
         @media (max-width: 1023px) { #custom-cursor { display: none; } }
@@ -52,32 +54,37 @@
 
     <script>
         const cursor = document.getElementById('custom-cursor');
-        let mX = 0, mY = 0, cX = 0, cY = 0;
+        let mX = -100, mY = -100; // Start off-screen
+        let cX = -100, cY = -100;
         
+        // Use clientX/Y to get the position relative to the visible window
         document.addEventListener('mousemove', e => { 
             mX = e.clientX; 
             mY = e.clientY; 
         });
 
         function updateCursor() {
-            cX += (mX - cX) * 0.12; 
-            cY += (mY - cY) * 0.12;
+            // Smooth "lerp" effect (0.15 is the speed of follow)
+            cX += (mX - cX) * 0.15; 
+            cY += (mY - cY) * 0.15;
+            
+            // Apply the position using translate3d for better performance
             cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
             requestAnimationFrame(updateCursor);
         }
         updateCursor();
 
-        // Cursor scale effect for links
+        // Add hover effects for the buttons
         const links = document.querySelectorAll('a');
         links.forEach(link => {
             link.addEventListener('mouseenter', () => {
-                cursor.style.width = '40px';
-                cursor.style.height = '40px';
+                cursor.style.width = '50px';
+                cursor.style.height = '50px';
                 cursor.style.backgroundColor = 'rgba(194, 124, 101, 0.2)';
             });
             link.addEventListener('mouseleave', () => {
-                cursor.style.width = '24px';
-                cursor.style.height = '24px';
+                cursor.style.width = '20px';
+                cursor.style.height = '20px';
                 cursor.style.backgroundColor = 'rgba(194, 124, 101, 0.1)';
             });
         });
