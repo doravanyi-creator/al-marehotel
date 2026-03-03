@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rooms &amp; Booking | AL-MARÉ Boutique Hotel Menorca</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8ba88e', /* Sage Green */
+            secondary: '#2c2c2c', /* Deep Charcoal */
+            accent: '#d4a373', /* Terracotta */
+            sand: '#f4f1de', /* Sand Beige */
+          },
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '4px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: #1a1a1a;
+      background-color: #ffffff;
+    }
+    .hero-overlay {
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+    }
+  </style>
+<style data-purpose="layout-refinement">
+    .room-card-hover:hover .room-image {
+      transform: scale(1.05);
+    }
+    .transition-custom {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="antialiased">
+<!-- BEGIN: Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100" data-purpose="main-navigation">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex-shrink-0">
+<span class="text-2xl font-extrabold tracking-tighter text-secondary">AL-MARÉ</span>
+</div>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Experience</a>
+<a class="text-sm font-medium text-primary" href="#">Rooms</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Wellness</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contact</a>
+<button class="bg-accent text-white px-6 py-2.5 rounded-custom font-semibold text-sm hover:opacity-90 transition-opacity">
+            Book Now
+          </button>
+</div>
+</div>
+</div>
+</nav>
+<!-- END: Navigation -->
+<!-- BEGIN: Hero Section -->
+<header class="relative h-[80vh] flex items-center justify-center overflow-hidden" data-purpose="hero-section">
+<!-- Hero Background -->
+<img alt="Boutique Hotel Exterior" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOMtJeBm-PlUDoi8PE47Uj1UuSNYA9Fys8mBNjr5hYFSYZcE0bbyuxCCux4aKrvVSMkHEqEKO9Ep0O5yxJ1dtADnCpPLkzLTtrxnsRXYWmYOQKAPaVfFy37rxfbx0QQFiUOk4MIQzK28AUvJJWk4MOBye1URX1Q6QdXOJ2GVp5Ad7SqZDRD6SSLblAADCOXMSrPCJoXMRAEeIMTlfQYsZI6jP8KHJ0E6qGuSezx4Tb8cUIdG_0-51bRbjCyJo7iZ6xETqMiRa0xQ4"/>
+<div class="absolute inset-0 hero-overlay"></div>
+<div class="relative z-10 text-center px-4">
+<h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+        Your Private Sanctuary <br class="hidden md:block"/> in Menorca
+      </h1>
+<p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-light">
+        Discover refined elegance and Mediterranean serenity in our curated collection of suites.
+      </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-accent hover:bg-opacity-90 text-white px-10 py-4 rounded-custom font-bold text-lg transition-custom shadow-lg">
+          Check Availability
+        </button>
+</div>
+</div>
+</header>
+<!-- END: Hero Section -->
+<main>
+<!-- BEGIN: Room Categories -->
+<section class="py-24 bg-white" data-purpose="room-listings" id="rooms">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-extrabold text-secondary mb-4">Our Accommodations</h2>
+<p class="text-gray-500 max-w-2xl mx-auto">Each room is a sanctuary designed with natural textures, organic materials, and a commitment to your ultimate rest.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Room 1: Deluxe Garden Room -->
+<article class="group room-card-hover" data-purpose="room-card">
+<div class="overflow-hidden rounded-custom mb-6 aspect-[4/5] relative">
+<img alt="Deluxe Garden Room" class="room-image absolute inset-0 w-full h-full object-cover transition-custom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdSWd4p9_y-MJKYDQt3ueJtiUt5jGms_Cb8dX_vSvBtEDMeoyaiuIqXqt4sKCgsoKFDlWeCmja84-XD6WmBuqD4eNhGCp_VgHrPq6ZE0neDqbmZLxn8FQSwltCVKrIb13XAMqm7mlhgwLK9PpDvZYP79eL6pzKvyZ_22rRtCVEe7X_zyRVFlj2B9QPNe0cndIDZJUehM12q3CEl_-lRAe8vvSM7H2FHlSdl36SXnlCAUfRHekTHuf_QMUQ_px5s6HjhYLVjb8Jt-E"/>
+</div>
+<h3 class="text-2xl font-bold mb-3">Deluxe Garden Room</h3>
+<ul class="space-y-2 mb-6 text-sm text-gray-600">
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> 35m² Interior Space</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> King-size bed</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> Private Garden Terrace</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> Organic amenities &amp; AC</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> Wi-Fi &amp; Full Minibar</li>
+</ul>
+<button class="w-full border-2 border-secondary text-secondary py-3 rounded-custom font-bold hover:bg-secondary hover:text-white transition-custom">View Details</button>
+</article>
+<!-- Room 2: Sea View Suite -->
+<article class="group room-card-hover" data-purpose="room-card">
+<div class="overflow-hidden rounded-custom mb-6 aspect-[4/5] relative">
+<img alt="Sea View Suite" class="room-image absolute inset-0 w-full h-full object-cover transition-custom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtDAeCVUymJcSGPnvF2swwScv-ZFeZSOShtoNV4gqjHyovyl72zyAJnL1Bn-PWzJv2zD-ti4FVeW_HaPHpvB8Ie_EGgxZzZbjxsGkuRo_lxTeoML6dhZvz1J1dnW6xx11p5F1MQqQfJNjmvvtxRS7SBl1BL5ELzXz0fuQd2zK7WcfF_O4A_-f5OZobuCS_Z6DF4E22TEhxcrSYDtxNmQi_3EX6A0_h3Jwwvl6Oxa8Sx1fJTJXX0Yv0U67rpDtLBTbymZteDIhsE8w"/>
+<div class="absolute top-4 right-4 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Most Popular</div>
+</div>
+<h3 class="text-2xl font-bold mb-3">Sea View Suite</h3>
+<ul class="space-y-2 mb-6 text-sm text-gray-600">
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> 50m² Panorama Suite</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> King-size bed</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> Private Balcony</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> Organic amenities &amp; AC</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> Wi-Fi &amp; Full Minibar</li>
+</ul>
+<button class="w-full border-2 border-secondary text-secondary py-3 rounded-custom font-bold hover:bg-secondary hover:text-white transition-custom">View Details</button>
+</article>
+<!-- Room 3: Wellness Suite -->
+<article class="group room-card-hover" data-purpose="room-card">
+<div class="overflow-hidden rounded-custom mb-6 aspect-[4/5] relative">
+<img alt="Wellness Suite" class="room-image absolute inset-0 w-full h-full object-cover transition-custom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBToelWfk6rR6SM0cYWuZveTZzpUCJFnh021VWT-BGUncSdHTBzUKRNlZDZoSx9HfHbyFT3fG7Dg6c_ihHPzqLCuXo00SnEsv2XAClOg7oBdynErRyrVNJ2yNTpsOOpwdrnBMHD2Pl6ahsQBLRNJLUOo9iY0oJ63VR9Pp44VFE_AlP4t-vuv04QJkzQQMZLPO8XkRwVufCELi1cpcDNRZk7RqQEY3dHAje_zPY0gYwpiBRedxf6aFrNAl-o78QbQWRL24cIgbTf59k"/>
+</div>
+<h3 class="text-2xl font-bold mb-3">Wellness Suite</h3>
+<ul class="space-y-2 mb-6 text-sm text-gray-600">
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> 65m² Luxury Space</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> King-size bed</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> Private Terrace</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> Organic amenities &amp; AC</li>
+<li class="flex items-center"><span class="w-1.5 h-1.5 bg-accent rounded-full mr-2"></span> Wi-Fi &amp; Full Minibar</li>
+</ul>
+<button class="w-full border-2 border-secondary text-secondary py-3 rounded-custom font-bold hover:bg-secondary hover:text-white transition-custom">View Details</button>
+</article>
+</div>
+</div>
+</section>
+<!-- END: Room Categories -->
+<!-- BEGIN: Why Book Direct -->
+<section class="py-24 bg-sand" data-purpose="booking-benefits">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col lg:flex-row items-center gap-16">
+<div class="lg:w-1/2">
+<h2 class="text-3xl md:text-4xl font-extrabold text-secondary mb-8">The Benefits of Booking Direct</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="p-6 bg-white rounded-custom shadow-sm border border-gray-100">
+<div class="text-accent mb-4">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h4 class="font-bold mb-2">Best Rate Guarantee</h4>
+<p class="text-sm text-gray-500">Secure the most advantageous rates by booking directly through our website.</p>
+</div>
+<div class="p-6 bg-white rounded-custom shadow-sm border border-gray-100">
+<div class="text-accent mb-4">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h4 class="font-bold mb-2">Priority Spa Reservations</h4>
+<p class="text-sm text-gray-500">Enjoy first choice of times for all treatments and thermal sessions.</p>
+</div>
+<div class="p-6 bg-white rounded-custom shadow-sm border border-gray-100">
+<div class="text-accent mb-4">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h4 class="font-bold mb-2">Flexible Cancellation</h4>
+<p class="text-sm text-gray-500">Adaptable terms to ensure your travel plans remain stress-free.</p>
+</div>
+<div class="p-6 bg-white rounded-custom shadow-sm border border-gray-100">
+<div class="text-accent mb-4">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h4 class="font-bold mb-2">Exclusive Wellness Welcome Gift</h4>
+<p class="text-sm text-gray-500">A hand-selected organic collection to begin your relaxation journey.</p>
+</div>
+</div>
+<button class="mt-10 bg-secondary text-white px-8 py-4 rounded-custom font-bold hover:opacity-90 transition-opacity">
+              Book Direct Now
+            </button>
+</div>
+<div class="lg:w-1/2 rounded-custom overflow-hidden">
+<img alt="Spa Experience" class="w-full h-full object-cover min-h-[400px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPI5xbOt2-nu62Ka0hq11YxAxIngrBb59YS_NoW2OG7lYXcdF6xPsyrnJR5F276t0ZWYUvBJwC64Zre_36wmDuyBF8Ha6lrMoKBlfpDjZxTCtbFbYqGN6UQux89HpA0w97HoxX3bwGplXHc1r_f52ICMNhVs3dSr_IFTaTrEWeS-mUb1vsa0WhSXU6drHRfByKK2lyiZ5CA851HL16ngtO66OSgmRHQbzAV_hIRSEV67q85L5Rr_HrUo4BjmzqWN_vcVFTdLqR2gU"/>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Why Book Direct -->
+<!-- BEGIN: Enhance Your Stay -->
+<section class="py-24 bg-white" data-purpose="upsell-wellness">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="relative rounded-[32px] overflow-hidden bg-secondary p-8 md:p-16 flex flex-col md:flex-row items-center justify-between">
+<div class="z-10 md:w-1/2">
+<span class="text-accent font-bold tracking-widest text-sm uppercase mb-4 block">Elevate Your Experience</span>
+<h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Enhance Your Stay</h2>
+<p class="text-white/70 mb-8 text-lg">Discover a new level of rejuvenation with our signature massages, unlimited thermal circuit access, personalized wellness programs, and exclusive seasonal retreats.</p>
+<button class="bg-accent text-white px-8 py-4 rounded-custom font-bold hover:bg-opacity-90 transition-all shadow-xl">
+              Add Wellness to Your Stay
+            </button>
+</div>
+<div class="mt-12 md:mt-0 md:w-1/3 opacity-50 md:opacity-100">
+<!-- Abstract decorative shape for premium feel -->
+<div class="relative w-64 h-64 mx-auto border-4 border-accent/30 rounded-full flex items-center justify-center animate-pulse">
+<div class="w-48 h-48 border-2 border-white/20 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Enhance Your Stay -->
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-secondary text-white py-16" data-purpose="main-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-12">
+<div class="col-span-1 md:col-span-1">
+<h3 class="text-2xl font-extrabold tracking-tighter mb-6">AL-MARÉ</h3>
+<p class="text-white/60 text-sm leading-relaxed">A sanctuary of light and calm in the heart of Menorca. Committed to sustainable luxury and holistic wellbeing.</p>
+</div>
+<div>
+<h4 class="font-bold mb-6">Explore</h4>
+<ul class="space-y-4 text-sm text-white/60">
+<li><a class="hover:text-primary" href="#">Accommodations</a></li>
+<li><a class="hover:text-primary" href="#">The Spa</a></li>
+<li><a class="hover:text-primary" href="#">Gastronomy</a></li>
+<li><a class="hover:text-primary" href="#">Experiences</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Contact</h4>
+<ul class="space-y-4 text-sm text-white/60">
+<li>Sant Lluís, Menorca</li>
+<li>+34 971 000 000</li>
+<li>hello@almare-hotel.com</li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Newsletter</h4>
+<form class="flex flex-col gap-4">
+<input class="bg-white/5 border border-white/10 rounded-custom px-4 py-2 text-sm focus:outline-none focus:border-primary" placeholder="Your email" type="email"/>
+<button class="bg-accent text-white py-2 rounded-custom font-bold text-sm">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="pt-8 text-center text-xs text-white/40">
+        © 2024 AL-MARÉ Boutique Hotel. All Rights Reserved.
+      </div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>
