@@ -96,7 +96,9 @@
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        btn.innerText = "Processing...";
+        
+        const originalText = btn.innerText;
+        btn.innerText = "Processing Request...";
         btn.disabled = true;
 
         const formData = {
@@ -106,7 +108,7 @@
         };
 
         try {
-            // Points to your Vercel Serverless Function
+            // FIXED: Using relative path for Vercel deployment
             const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -114,14 +116,18 @@
             });
 
             if (response.ok) {
+                // SUCCESS: Redirect to your branded thank you page
                 window.location.href = "thank-you.html";
             } else {
-                throw new Error('Pipeline error');
+                const result = await response.json();
+                throw new Error(result.message || 'Submission failed');
             }
+
         } catch (error) {
-            console.error(error);
-            alert("Error sending message. Please try again.");
-            btn.innerText = "Send to Concierge";
+            console.error('Submission failed:', error);
+            alert("Our apologies. There was a connection error. Please try again or email us directly.");
+        } finally {
+            btn.innerText = originalText;
             btn.disabled = false;
         }
     });
