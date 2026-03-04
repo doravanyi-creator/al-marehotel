@@ -91,38 +91,45 @@
 <script>
     AOS.init({ once: true, duration: 800 });
 
-    // AJAX FORM SUBMISSION (Bypasses Formspree Paid Tier)
     const form = document.getElementById("contact-form");
     const btn = document.getElementById("submit-btn");
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        btn.innerText = "Sending...";
+        btn.innerText = "Sending to Concierge...";
         btn.disabled = true;
 
-        const data = new FormData(form);
+        // Collect form data
+        const formData = {
+            name: form.name.value,
+            email: form.email.value,
+            message: form.message.value
+        };
 
         try {
-            const response = await fetch("https://formspree.io/f/xeelyjgw", {
+            // This calls the backend code you placed in /api/contact.js
+            const response = await fetch("/api/contact", {
                 method: "POST",
-                body: data,
-                headers: { 'Accept': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
             });
 
             if (response.ok) {
-                // SUCCESS: Redirect to your thank you page
+                // SUCCESS: Redirect to your branded thank you page
                 window.location.href = "thank-you.html";
             } else {
-                throw new Error('Failed to send');
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Submission failed');
             }
         } catch (error) {
-            alert("Oops! There was a problem. Please try again.");
+            console.error("Pipeline Error:", error);
+            alert("Our concierge is briefly unavailable. Please try again or email us directly.");
             btn.innerText = "Send to Concierge";
             btn.disabled = false;
         }
     });
 
-    // Cursor Logic
+    // Cursor Logic (Keep this for the aesthetic)
     const cursor = document.getElementById('custom-cursor');
     let mX = 0, mY = 0, cX = 0, cY = 0;
     document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
