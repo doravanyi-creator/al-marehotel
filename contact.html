@@ -40,4 +40,102 @@
             <a class="hover:text-[#8ba88e] transition-colors" href="rooms.html">Rooms</a>
             <a class="text-[#8ba88e]" href="contact.html">Contact</a>
         </div>
-        <button onclick="window.location.href='rooms.html'" class="bg-[#2d2
+        <button onclick="window.location.href='rooms.html'" class="bg-[#2d2a26] text-white px-5 py-2 rounded-custom text-[10px] md:text-xs uppercase tracking-widest font-bold">Book Now</button>
+    </div>
+</nav>
+
+<main class="pt-40 pb-24 max-w-5xl mx-auto px-6 min-h-screen">
+    <div class="text-center mb-16" data-aos="fade-up">
+        <h1 class="text-5xl md:text-7xl mb-4 text-[#2d2a26]">Concierge</h1>
+        <p class="text-stone-500 font-serif italic text-xl">We are here to curate your escape.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-16" data-aos="fade-up">
+        <div class="space-y-12">
+            <div>
+                <h3 class="text-xs uppercase tracking-widest text-[#c27c65] mb-4 font-bold">The Location</h3>
+                <p class="text-lg leading-relaxed text-stone-600">Cala d'Alcaufar, Sant Lluís<br>Menorca, Spain</p>
+            </div>
+            <div>
+                <h3 class="text-xs uppercase tracking-widest text-[#c27c65] mb-4 font-bold">The Connection</h3>
+                <p class="text-lg leading-relaxed text-stone-600">hello@almare-menorca.com<br>+34 971 000 000</p>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-custom shadow-sm border border-stone-100 relative overflow-hidden">
+            <form id="contact-form" class="space-y-6">
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block text-stone-400 font-bold">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Guest Name" class="w-full py-4 px-4 text-sm rounded-custom outline-none">
+                </div>
+                
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block text-stone-400 font-bold">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="email@example.com" class="w-full py-4 px-4 text-sm rounded-custom outline-none">
+                </div>
+
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest mb-2 block text-stone-400 font-bold">Message</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="How can our concierge assist you?" class="w-full py-4 px-4 text-sm rounded-custom outline-none"></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn" class="bg-[#2d2a26] text-white w-full py-5 uppercase text-xs tracking-widest font-bold hover:bg-zinc-800 transition-all shadow-md">
+                    Send to Concierge
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 800 });
+
+    const form = document.getElementById("contact-form");
+    const btn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        btn.innerText = "Processing...";
+        btn.disabled = true;
+
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+
+        try {
+            // Points to your Vercel Serverless Function
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                window.location.href = "thank-you.html";
+            } else {
+                throw new Error('Pipeline error');
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Error sending message. Please try again.");
+            btn.innerText = "Send to Concierge";
+            btn.disabled = false;
+        }
+    });
+
+    // Cursor Logic
+    const cursor = document.getElementById('custom-cursor');
+    let mX = 0, mY = 0, cX = 0, cY = 0;
+    document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+    function updateCursor() {
+        cX += (mX - cX) * 0.12; cY += (mY - cY) * 0.12;
+        cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+</script>
+</body>
+</html>
