@@ -25,6 +25,17 @@
         @media (max-width: 1023px) { #custom-cursor { display: none; } }
         input, textarea { background-color: #fcfbf8 !important; border: 1px solid #e5e7eb !important; }
         input:focus, textarea:focus { border-color: #c27c65 !important; ring: 1px !important; ring-color: #c27c65 !important; }
+        
+        /* Success Message Animation */
+        #success-message {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        #success-message.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body class="bg-[#f4f1ea] text-[#2d2a26] antialiased">
@@ -63,6 +74,14 @@
         </div>
 
         <div class="bg-white p-8 rounded-custom shadow-sm border border-stone-100 relative overflow-hidden">
+            <!-- Success Message Overlay -->
+            <div id="success-message" class="absolute inset-0 bg-white z-20 flex flex-col justify-center items-center text-center p-8">
+                <div class="text-[#c27c65] text-xl font-serif italic mb-2">Message Sent</div>
+                <h3 class="text-2xl text-[#2d2a26] font-serif mb-4">Thank you for contacting us.</h3>
+                <p class="text-stone-500 text-sm mb-6">Our concierge team will review your request and be in touch shortly.</p>
+                <button onclick="resetForm()" class="text-xs uppercase tracking-widest border-b border-[#2d2a26] pb-1 hover:text-[#c27c65] hover:border-[#c27c65] transition-colors">Send Another Message</button>
+            </div>
+
             <form id="contact-form" class="space-y-6">
                 <div>
                     <label class="text-[10px] uppercase tracking-widest mb-2 block text-stone-400 font-bold">Full Name</label>
@@ -91,16 +110,21 @@
 <script>
     AOS.init({ once: true, duration: 800 });
 
+    // Custom Server Submission Logic
     const form = document.getElementById("contact-form");
     const btn = document.getElementById("submit-btn");
+    const successMsg = document.getElementById("success-message");
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
         
+        // 1. Loading State
         const originalText = btn.innerText;
         btn.innerText = "Processing Request...";
         btn.disabled = true;
+        btn.classList.add('opacity-75');
 
+        // 2. Gather Data
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
@@ -108,29 +132,40 @@
         };
 
         try {
-            // FIXED: Using relative path for Vercel deployment
-            const response = await fetch("/api/contact", {
+            // 3. Send to Backend
+            const response = await fetch("http://localhost:3000/api/contact", {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(formData)
             });
 
+            const result = await response.json();
+
             if (response.ok) {
-                // SUCCESS: Redirect to your branded thank you page
-                window.location.href = "thank-you.html";
+                // 4. Success Handling
+                successMsg.classList.add('active');
+                form.reset();
             } else {
-                const result = await response.json();
-                throw new Error(result.message || 'Submission failed');
+                throw new Error(result.message || 'Unknown Error');
             }
 
         } catch (error) {
             console.error('Submission failed:', error);
-            alert("Our apologies. There was a connection error. Please try again or email us directly.");
+            alert("We apologize, but there was an error sending your message. Please try again later.");
         } finally {
+            // 5. Reset Button
             btn.innerText = originalText;
             btn.disabled = false;
+            btn.classList.remove('opacity-75');
         }
     });
+
+    // Reset UI for new submission
+    window.resetForm = function() {
+        successMsg.classList.remove('active');
+    }
 
     // Cursor Logic
     const cursor = document.getElementById('custom-cursor');
